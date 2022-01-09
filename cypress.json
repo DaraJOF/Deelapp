@@ -1,0 +1,10 @@
+{
+	"baseUrl": "https://app.deel.training",
+	"viewportWidth": 1280,
+	"viewportHeight": 720,
+
+	"env": {
+		"email": "faithlohla@gmail.com",
+		"password": "Oluwadara_97"
+	}
+}
