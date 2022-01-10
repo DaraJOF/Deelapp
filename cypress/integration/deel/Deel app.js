@@ -1,18 +1,19 @@
 ///  <reference types="cypress" />     
 
 
-describe('Create Contract', () => {
+describe('Create Fixed Contract', () => {
     let fixeddata;
 
-	beforeEach(function () {
+	beforeEach( () => {
 		cy.fixture("fixedrateform").then((data)=> {
 			fixeddata = data;
 		});
-        cy.login(Cypress.env("email"), Cypress.env("password"))
 	});
 
-    it('Create Fixed Contract', () => 
+    it('Create General Info', () => 
     {
+        cy.login(Cypress.env("email"), Cypress.env("password"))
+
         cy.get(":nth-child(2) > .anchor > .sidebar-link > .flex > .sidebar-option-p").should("be.visible")
         .click() //click on create a contract
 
@@ -54,12 +55,14 @@ describe('Create Contract', () => {
         cy.get(".react-calendar__navigation__label").dblclick()
         cy.get('.react-calendar__decade-view__years__year').contains(year).click()
         cy.get('.react-calendar__year-view__months__month').contains(month).click()
-        cy.get('.react-calendar__month-view__days__day').contains(day).click()
-
+        cy.get('.react-calendar__month-view__days__day').contains(new RegExp("^" + day + "$", "g")).click()  //select date from date picker
 
         cy.get('.justify-content-end > .button').should("be.visible")
         .click()  //click next button
+    })
 
+    it('Create Payment Details', () => 
+    {
         cy.get('.payment-set-controls > .deel-ui__select > .deel-ui__select__input-container > .deel-ui__select__control > .deel-ui__select__value-container').should("be.visible")
         .type(fixeddata.currency) 
         cy.get('#react-select-6-option-37').should("be.visible")
@@ -69,15 +72,40 @@ describe('Create Contract', () => {
         .type(fixeddata.payment_rate)  //Enter payment rate
 
         cy.get(':nth-child(2) > .flex > .deel-ui__select > .deel-ui__select__input-container > .deel-ui__select__control > .deel-ui__select__value-container').should("be.visible")
-        .type(fixeddata.payment_frequency)
+        .type(fixeddata.payment_frequency)  //select payment frequency
+        cy.get('#react-select-7-option-0').should("be.visible")
+        .click()
+
+        //cy.get('.deel-ui__stack_stretch.deel-ui__stack_align-start > .flex > label').click()  //uncheck pay ahead of weekend
 
         cy.get("[type='submit']").should("be.visible")
         .click()  //click next button
+    })
 
+    it('Define Dates', () => 
+    {
         cy.get("[type='submit']").should("be.visible")
         .click()  //click next button
+    })
 
+    it('Create Benefits and Extras', () => 
+    {
+        cy.get(':nth-child(5) > .box > .flex > :nth-child(2) > .button').click()
+        cy.get('.textarea').should("be.visible").type("This is a test, this is a test.")  //Add special clause
 
+        cy.get(':nth-child(6) > .button').click()  //click next
+    })
+
+    it('Create Contract Compliance', () => 
+    {
+        cy.get('[data-qa="create-contract"]').should("be.visible").click()  //click create contract
+    })
+    it('Review and Sign', () => 
+    {
+        cy.get(".heap-fixed-client-review-sign").should("be.visible").click()  //click create contract
+
+        cy.wait(3000)
+        cy.get('.sign-contract__sign-section > .button').should("be.visible").click()  //click agree and continue
 
     })
 })
