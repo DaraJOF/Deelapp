@@ -90,16 +90,17 @@ describe('Create Fixed Contract', () => {
 
     it('Create Benefits and Extras', () => 
     {
-        cy.get(':nth-child(5) > .box > .flex > :nth-child(2) > .button').click()
+        cy.get(':nth-child(5) > .box > .flex > :nth-child(2) > .button').should("be.visible").click()
         cy.get('.textarea').should("be.visible").type("This is a test, this is a test.")  //Add special clause
 
-        cy.get(':nth-child(6) > .button').click()  //click next
+        cy.get(':nth-child(6) > .button').should("be.visible").click()  //click next
     })
 
     it('Create Contract Compliance', () => 
     {
         cy.get('[data-qa="create-contract"]').should("be.visible").click()  //click create contract
     })
+
     it('Review and Sign', () => 
     {
         cy.get('.heap-fixed-client-review-sign').should("be.visible").click()  //click create contract
