@@ -18,6 +18,10 @@ Wrote a series of automated tests for creating a fixed contract on deel app.
 * npm install
 * npx cypress run --spec "cypress/integration/deelapp.js" --browser chrome --headed
 
+### Configuration
+
+The fixedrateform in the fixtures folder contains the test data to be passed in the test.
+
 ## Authors
 
 Faith Jimi-Oni
