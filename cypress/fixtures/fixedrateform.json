@@ -3,6 +3,9 @@
 	"tax_residence": "United States",
 	"state": "Colorado",
 	"job_title": "QA Analyst",
-	"seniority_level": 1,
-	"scope_of_work": "Build quality product"
+	"scope_of_work": "Build quality product",
+    "seniority_level": "Senior (Individual Contributor Level 3)",
+    "currency": "GBP",
+    "payment_rate": "1000",
+    "payment_frequency": "Weekly"
 }

@@ -9,7 +9,7 @@ Cypress.Commands.add("login", (email, password) => {
 		.should("be.visible")
 		.type(password);
 	cy.get(".mt-10").should("be.visible").should("be.visible").click();
-	cy.wait(3000);
+	cy.wait(5000);
 		cy.get("body").then(($body) => {
 			if ($body.find(".whats-new-popup .button-close").length > 0) {
 				cy.get(".whats-new-popup .button-close")
