@@ -8,11 +8,11 @@ Cypress.Commands.add("login", (email, password) => {
 	cy.get(".mt-9 > .input-container > .input > input")
 		.should("be.visible")
 		.type(password);
-	cy.get(".mt-10").should("be.visible").should("be.visible").click();
+	cy.get(".mt-10").should("be.visible").click();
 	cy.wait(5000);
 		cy.get("body").then(($body) => {
 			if ($body.find(".whats-new-popup .button-close").length > 0) {
-				cy.get(".whats-new-popup .button-close")
+				cy.get(".whats-new-popup .button-close",{timeout:5000})
 					.should("be.visible")
 					.click();
 			}
