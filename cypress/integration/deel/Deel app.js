@@ -14,7 +14,7 @@ describe('Create Fixed Contract', () => {
     {
         cy.login(Cypress.env("email"), Cypress.env("password"))
 
-        cy.get(":nth-child(2) > .anchor > .sidebar-link > .flex > .sidebar-option-p").should("be.visible")
+        cy.get(':nth-child(2) > .anchor > .sidebar-link > .flex > .sidebar-option-p').should("be.visible")
         .click() //click on create a contract
 
         cy.get(':nth-child(1) > .anchor > .box').should("be.visible")
@@ -25,17 +25,17 @@ describe('Create Fixed Contract', () => {
 
         cy.get(':nth-child(1) > .deel-ui__stack_vertical > .input-container > .flex > .deel-ui__select > .deel-ui__select__input-container > .deel-ui__select__control > .deel-ui__select__value-container').should("be.visible")
         .type(fixeddata.tax_residence)  //search contractors tax residence
-        cy.get("#react-select-3-option-1-2").should("be.visible")
+        cy.get('#react-select-3-option-1-2').should("be.visible")
         .click()  //select country
 
         cy.get(':nth-child(2) > .deel-ui__select__input-container > .deel-ui__select__control > .deel-ui__select__value-container').should("be.visible")
         .type(fixeddata.state)  //search for state
-        cy.get("#react-select-5-option-5").should("be.visible")
+        cy.get('#react-select-5-option-5').should("be.visible")
         .click()   //select state
         
         cy.get(':nth-child(3) > :nth-child(1) > .deel-ui__input-component__wrapper > .deel-ui__input-component > .deel-ui__input-component__input').should("be.visible")
         .type(fixeddata.job_title) 
-        cy.get(".suggestions-option").should("be.visible")
+        cy.get('.suggestions-option').should("be.visible")
         .click()  //select job title
 
         cy.get('[data-qa="selector-seniority-level"] > .flex > .deel-ui__select > .deel-ui__select__input-container > .deel-ui__select__control > .deel-ui__select__value-container').should("be.visible")
@@ -52,7 +52,7 @@ describe('Create Fixed Contract', () => {
         const day = dateObj.getDate() -1;
         const year = dateObj.getFullYear();
         cy.get('.deel-ui__icon-calendar-0').click()
-        cy.get(".react-calendar__navigation__label").dblclick()
+        cy.get('.react-calendar__navigation__label').dblclick()
         cy.get('.react-calendar__decade-view__years__year').contains(year).click()
         cy.get('.react-calendar__year-view__months__month').contains(month).click()
         cy.get('.react-calendar__month-view__days__day').contains(new RegExp("^" + day + "$", "g")).click()  //select date from date picker
@@ -102,7 +102,7 @@ describe('Create Fixed Contract', () => {
     })
     it('Review and Sign', () => 
     {
-        cy.get(".heap-fixed-client-review-sign").should("be.visible").click()  //click create contract
+        cy.get('.heap-fixed-client-review-sign').should("be.visible").click()  //click create contract
 
         cy.wait(3000)
         cy.get('.sign-contract__sign-section > .button').should("be.visible").click()  //click agree and continue
